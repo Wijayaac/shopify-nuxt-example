@@ -9,11 +9,13 @@ export default {
     ...mapGetters({
       cartId: 'cart/id',
       cartItems: 'cart/items',
+      checkoutUrl: 'cart/checkoutUrl',
     }),
   },
   async mounted() {
     // Get local cart id
     const localCart = window.localStorage.getItem('shopifyNuxtCart')
+    const cartId = window.localStorage.getItem('shopifyNuxtCartId')
 
     if (localCart) {
       this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
@@ -25,6 +27,15 @@ export default {
       if (shopifyResponse) {
         this.$store.dispatch('cart/updateBase', shopifyResponse.cart)
       }
+    }
+    if (cartId) {
+      const {
+        cart: { checkoutUrl },
+      } = await this.$http.$post('/api/get-checkout-url', {
+        cartId,
+      })
+
+      this.$store.dispatch('cart/updateCheckoutURL', checkoutUrl)
     }
   },
 }
@@ -45,6 +56,13 @@ export default {
         </nuxt-link>
       </section>
     </article>
+    <a
+      v-if="checkoutUrl"
+      class="cart-page-button is-dark checkout-button"
+      :href="checkoutUrl"
+      target="_blank"
+      >Checkout</a
+    >
   </main>
 </template>
 
@@ -59,6 +77,15 @@ export default {
   color: #f8f8f8;
   padding: 10px 14px;
   display: inline-block;
+}
+
+.cart-page-button.checkout-button {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  padding-inline: 20px;
+  display: block;
+  max-width: max-content;
 }
 
 .cart-page-content {

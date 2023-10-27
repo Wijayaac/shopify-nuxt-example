@@ -11,6 +11,7 @@ export const state = () => ({
       totalAmount: {},
     },
   },
+  checkoutUrl: '',
 })
 
 export const getters = {
@@ -59,6 +60,9 @@ export const getters = {
       return formatCurrency(total.amount, total.currencyCode)
     }
   },
+  checkoutUrl: (state) => {
+    return state.checkoutUrl
+  },
 }
 
 export const mutations = {
@@ -67,6 +71,9 @@ export const mutations = {
   },
   setId(state, id) {
     state.base.id = id
+  },
+  setCheckoutUrl(state, url) {
+    state.checkoutUrl = url
   },
 }
 
@@ -80,5 +87,10 @@ export const actions = {
     window.localStorage.removeItem('shopifyNuxtCartId')
     window.localStorage.setItem('shopifyNuxtCartId', id)
     commit('setId', id)
+  },
+  updateCheckoutURL({ commit }, url) {
+    window.localStorage.removeItem('shopifyNuxtCheckoutUrl')
+    window.localStorage.setItem('shopifyNuxtCheckoutUrl', url)
+    commit('setCheckoutUrl', url)
   },
 }
