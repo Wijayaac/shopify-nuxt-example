@@ -23,7 +23,9 @@ export default {
       cartId: 'cart/id',
     }),
     featuredImage() {
-      return this.product.images.edges[0].node
+      return this.product.images.edges[0]
+        ? this.product.images.edges[0].node
+        : null
     },
     maxQuantity() {
       if (this.selectedProduct) {
@@ -78,8 +80,9 @@ export default {
       <section class="product-page-content">
         <div>
           <img
+            v-if="featuredImage"
             class="product-page-image"
-            :src="featuredImage.src"
+            :src="featuredImage.url"
             :alt="featuredImage.altText"
           />
         </div>

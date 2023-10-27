@@ -8,7 +8,9 @@ export default {
   },
   computed: {
     featuredImage() {
-      return this.product.images.edges[0].node
+      return this.product.images.edges[0]
+        ? this.product.images.edges[0].node
+        : null
     },
     shortDescription() {
       return this.product.description.substring(0, 60) + '...'
@@ -22,8 +24,9 @@ export default {
     <div class="product-card-frame">
       <NuxtLink :to="`/products/${product.handle}`">
         <img
+          v-if="featuredImage"
           class="prodimg"
-          :src="featuredImage.src"
+          :src="featuredImage.url"
           :alt="featuredImage.altText"
         />
       </NuxtLink>

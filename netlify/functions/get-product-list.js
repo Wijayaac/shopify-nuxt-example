@@ -25,7 +25,7 @@ exports.handler = async () => {
     const shopifyResponse = await postToShopify({
       query: `
         query getProductList {
-          products(sortKey: TITLE, first: 100) {
+          products(sortKey: TITLE, first: 10) {
             edges {
               node {
                 id
@@ -33,34 +33,10 @@ exports.handler = async () => {
                 description
                 title
                 productType
-                totalInventory
-                variants(first: 5) {
-                  edges {
-                    node {
-                      id
-                      title
-                      quantityAvailable
-                      priceV2 {
-                        amount
-                        currencyCode
-                      }
-                    }
-                  }
-                }
-                priceRange {
-                  maxVariantPrice {
-                    amount
-                    currencyCode
-                  }
-                  minVariantPrice {
-                    amount
-                    currencyCode
-                  }
-                }
                 images(first: 1) {
                   edges {
                     node {
-                      src
+                      url
                       altText
                     }
                   }

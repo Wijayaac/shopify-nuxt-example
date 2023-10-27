@@ -57,7 +57,7 @@ exports.handler = async (event) => {
             images(first: 1) {
               edges {
                 node {
-                  src
+                  url
                   altText
                 }
               }

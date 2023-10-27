@@ -2,7 +2,6 @@
 export default {
   async asyncData({ $http, $route }) {
     const productListResponse = await $http.$post('/api/get-product-list')
-
     return {
       productList: productListResponse.products.edges,
     }
