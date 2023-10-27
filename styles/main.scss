@@ -1,0 +1,88 @@
+/**
+* Inspired by Sarah's E-Commerce Site
+* https://github.com/sdras/ecommerce-netlify/blob/main/assets/main.scss
+*/
+
+/*------------  Global   -----------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-family: $fontSansSerif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  border: 10px solid #ccc;
+  min-height: 100vh;
+  font-family: $fontSansSerif;
+  font-size: 16px;
+  line-height: 1.4;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $fontSerif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+p {
+  margin: 20px 0;
+}
+
+a,
+a:active,
+a:visited {
+  color: $brandprimary;
+  text-decoration: none;
+  transition: 0.3s all ease;
+}
+
+button {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 10px 14px;
+  cursor: pointer;
+  color: black;
+  font-weight: 700;
+  font-family: $fontSansSerif;
+  transition: 0.3s all ease;
+
+  &:hover {
+    background: black;
+    border: 1px solid black;
+    color: white;
+  }
+}
+
+hr {
+  border-top: 1px solid #eee;
+  margin: 30px 0;
+}
+
+input {
+  font-family: $fontSansSerif;
+  font-size: 16px;
+  padding: 5px 10px;
+}
