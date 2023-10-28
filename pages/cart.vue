@@ -48,6 +48,13 @@ export default {
       <div v-if="cartItems.length > 0">
         <cart-table />
         <cart-total />
+        <a
+          v-if="checkoutUrl"
+          class="cart-page-button is-dark checkout-button"
+          :href="checkoutUrl"
+          target="_blank"
+          >Checkout</a
+        >
       </div>
       <section v-else>
         <p class="cart-page-message">Your cart is empty, fill it up!</p>
@@ -56,13 +63,6 @@ export default {
         </nuxt-link>
       </section>
     </article>
-    <a
-      v-if="checkoutUrl"
-      class="cart-page-button is-dark checkout-button"
-      :href="checkoutUrl"
-      target="_blank"
-      >Checkout</a
-    >
   </main>
 </template>
 
