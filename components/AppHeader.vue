@@ -12,7 +12,28 @@ export default {
 
 <template>
   <header class="app-header">
-    <h1>Shoperoni</h1>
+    <div class="logo">
+      <div class="logo-search">
+        <button aria-label="Search Items">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+          >
+            <path
+              fill="currentColor"
+              d="m29 27.586l-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9a9.01 9.01 0 0 1-9-9Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <h1 class="logo-name">Shoperoni</h1>
+      <div class="logo-cart">
+        <div v-if="cartSize > 0" class="cart-size">{{ cartSize }}</div>
+        <nuxt-link to="/cart">Cart</nuxt-link>
+      </div>
+    </div>
     <nav class="main-nav">
       <ul>
         <li class="main-nav-item">
@@ -27,10 +48,6 @@ export default {
         <li class="main-nav-item">
           <nuxt-link to="/?type=boards">Boards</nuxt-link>
         </li>
-        <li class="main-nav-item">
-          <div v-if="cartSize > 0" class="cart-size">{{ cartSize }}</div>
-          <nuxt-link to="/cart">Cart</nuxt-link>
-        </li>
       </ul>
     </nav>
   </header>
@@ -44,10 +61,21 @@ export default {
   align-items: center;
   padding: 40px 40px 0;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1080px;
 
+  &-cart {
+    position: relative;
+  }
+}
 .main-nav {
   display: flex;
-  width: 80vw;
+  width: 100%;
+  max-width: 1080px;
   margin-top: 30px;
   justify-content: center;
   align-items: center;
