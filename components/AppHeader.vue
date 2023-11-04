@@ -28,7 +28,7 @@ export default {
           </svg>
         </button>
       </div>
-      <h1 class="logo-name">Shoperoni</h1>
+      <h1 class="logo-name"></h1>
       <div class="logo-cart">
         <div v-if="cartSize > 0" class="cart-size">{{ cartSize }}</div>
         <nuxt-link to="/cart">Cart</nuxt-link>
