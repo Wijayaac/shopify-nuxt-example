@@ -7,31 +7,37 @@ export default {
       cartSize: 'cart/size',
     }),
   },
+  // add function to show header when scrolling up
+  mounted() {
+    let prevScrollpos = window.pageYOffset
+    const header = this.$refs.header
+    window.onscroll = function () {
+      const currentScrollPos = window.pageYOffset
+      if (prevScrollpos < currentScrollPos) {
+        header.classList.add('header-hidden')
+      } else {
+        header.classList.remove('header-hidden')
+      }
+      prevScrollpos = currentScrollPos
+    }
+  },
 }
 </script>
 
 <template>
-  <header class="app-header">
+  <header ref="header" class="app-header">
     <div class="logo">
       <div class="logo-search">
         <button aria-label="Search Items">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-          >
-            <path
-              fill="currentColor"
-              d="m29 27.586l-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9a9.01 9.01 0 0 1-9-9Z"
-            />
-          </svg>
+          <icons-search />
         </button>
       </div>
-      <h1 class="logo-name"></h1>
+      <h1 class="logo-name">Sense</h1>
       <div class="logo-cart">
         <div v-if="cartSize > 0" class="cart-size">{{ cartSize }}</div>
-        <nuxt-link to="/cart">Cart</nuxt-link>
+        <nuxt-link to="/cart">
+          <icons-shopping-bag />
+        </nuxt-link>
       </div>
     </div>
     <nav class="main-nav">
@@ -60,6 +66,14 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 40px 40px 0;
+  transition: transform 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  background-color: $color-grayish;
+  &.header-hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
 }
 .logo {
   display: flex;
@@ -67,9 +81,52 @@ export default {
   justify-content: space-between;
   width: 100%;
   max-width: 1080px;
+  &-search {
+    padding: 0;
 
+    button {
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
   &-cart {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      color: #000;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+    .cart-size {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      padding: 3px 6px;
+      border-radius: 1000px;
+      background: $color-burgundy;
+      text-align: center;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  }
+  &-name {
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
   }
 }
 .main-nav {
@@ -79,8 +136,8 @@ export default {
   margin-top: 30px;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  // border-top: 1px solid #ccc;
+  // border-bottom: 1px solid #ccc;
   padding: 8px 0;
 
   ul {
@@ -92,45 +149,23 @@ export default {
   position: relative;
   display: inline;
   padding: 0 3px;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   @include breakpoint($deviceXs) {
     padding: 0 8px;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    font-size: 0.7rem;
   }
 
   @include breakpoint($deviceSm) {
     padding: 0 10px;
-    font-size: 0.8rem;
   }
 
   a {
-    color: black;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: $color-text;
     &:hover {
-      color: $brandprimary;
+      color: #000;
     }
-  }
-}
-.cart-size {
-  position: absolute;
-  top: -18px;
-  right: -20px;
-  width: 25px;
-  height: 25px;
-  padding: 6px 10px;
-  border-radius: 1000px;
-  background: black;
-  text-align: center;
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-
-  @include breakpoint($deviceMd) {
-    right: -18px;
   }
 }
 </style>
