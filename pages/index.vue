@@ -35,6 +35,7 @@ export default {
   <main class="home-page">
     <home-banner />
     <product-grid :product-list="filteredProductList" />
+    <home-quote />
   </main>
 </template>
 
