@@ -69,7 +69,9 @@ export default {
   transition: transform 0.3s ease-in-out;
   position: sticky;
   top: 0;
+  z-index: 999;
   background-color: $color-grayish;
+  border-bottom: $color-text;
   &.header-hidden {
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
@@ -136,8 +138,6 @@ export default {
   margin-top: 30px;
   justify-content: center;
   align-items: center;
-  // border-top: 1px solid #ccc;
-  // border-bottom: 1px solid #ccc;
   padding: 8px 0;
 
   ul {

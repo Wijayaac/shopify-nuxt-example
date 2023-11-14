@@ -45,6 +45,7 @@ body {
 	min-height: 100vh;
 	font-family: $fontSansSerif;
 	background-color: $color-grayish;
+	color: $color-text;
 	font-size: 16px;
 	line-height: 1.4;
 	word-spacing: 1px;
@@ -59,11 +60,12 @@ h1,
 h2,
 h3 {
 	font-family: $fontSansSerif;
-	font-weight: normal;
+	font-weight: 700;
 }
 
 h1 {
 	font-size: 2.5rem;
+	line-height: 100%;
 }
 
 a,
@@ -201,4 +203,36 @@ input {
 	background: rgb(var(--color-background));
 	background: var(--gradient-background);
 	background-attachment: fixed;
+}
+
+// button styles
+.button {
+	display: inline-block;
+	position: relative;
+	width: max-content;
+	text-align: center;
+	padding: 10px 20px;
+	color: $color-text;
+
+	&.dark {
+		background-color: $color-text;
+		color: $color-stabilo;
+		border-radius: 12px;
+	}
+}
+
+.container {
+	max-width: 1280px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+	&-md {
+		max-width: 1140px;
+	}
+
+	@include breakpoint(992px) {
+		margin: 0 auto;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
 }

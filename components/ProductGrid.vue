@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="product-grid">
+  <div class="product-grid container-md">
     <product-card
       v-for="product in productList"
       :key="product.node.id"
@@ -21,7 +21,6 @@ export default {
 
 <style lang="scss" scoped>
 .product-grid {
-  max-width: 60vw;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;

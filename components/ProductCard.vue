@@ -1,5 +1,10 @@
 <script>
 export default {
+  data() {
+    return {
+      showDescription: false,
+    }
+  },
   props: {
     product: {
       type: Object,
@@ -20,25 +25,24 @@ export default {
 </script>
 
 <template>
-  <div class="product-card">
+  <NuxtLink :to="`/products/${product.handle}`" class="product-card">
     <div class="product-card-frame">
-      <NuxtLink :to="`/products/${product.handle}`">
-        <img
-          v-if="featuredImage"
-          class="prodimg"
-          :src="featuredImage.url"
-          :alt="featuredImage.altText"
-        />
-      </NuxtLink>
+      <img
+        v-if="featuredImage"
+        class="prodimg"
+        :src="featuredImage.url"
+        :alt="featuredImage.altText"
+      />
+      <p v-else>Image not loaded</p>
     </div>
     <div class="product-card-text">
       <h3 class="product-card-title">{{ product.title }}</h3>
-      <p class="product-card-description">{{ shortDescription }}</p>
+      <p v-if="showDescription" class="product-card-description">
+        {{ shortDescription }}
+      </p>
+      <p class="button">View details</p>
     </div>
-    <NuxtLink :to="`/products/${product.handle}`">
-      <button>View Item ></button>
-    </NuxtLink>
-  </div>
+  </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
@@ -47,6 +51,13 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: $color-white;
+
+  .button {
+    width: 100%;
+  }
 }
 
 .product-card-description {
@@ -60,27 +71,35 @@ export default {
 }
 
 .product-card-frame {
-  height: 120px;
+  position: relative;
+  width: 100%;
+  min-height: 150px;
   display: flex;
-  align-content: center;
+  justify-content: center;
   align-items: center;
-  border-radius: 10px;
   overflow: hidden;
+  text-align: center;
+  background-color: $color-burgundy;
+  color: $color-white;
 
   img {
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-    height: 100%;
+    @include img-ratio();
   }
 }
 
 .product-card-text {
-  margin: 0.5rem 0;
+  padding: 7.5px 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 }
 
 .product-card-title {
   margin: 0.5rem 0;
+  color: $color-text;
   text-align: center;
   font-weight: 700;
 }
