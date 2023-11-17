@@ -1,70 +1,88 @@
 <template>
-  <section class="app-footer-links">
-    <ul>
-      <li>About</li>
-      <li>Company</li>
-      <li>Locations</li>
-      <li>Contact</li>
-      <li>Hours</li>
+  <div class="container">
+    <section class="footer-links">
+      <div class="wrapper">
+        <div class="column">
+          <h3 class="h4">Menu</h3>
+          <ul>
+            <li>About</li>
+            <li>Company</li>
+            <li>Locations</li>
+            <li>Contact</li>
+            <li>Hours</li>
+          </ul>
+        </div>
+        <div class="column">
+          <h3 class="h4">Our Store</h3>
+          <ul>
+            <li>About</li>
+            <li>Company</li>
+            <li>Locations</li>
+            <li>Contact</li>
+            <li>Hours</li>
+          </ul>
+        </div>
+        <div class="column">
+          <h3 class="h4">Image</h3>
+        </div>
+        <div class="column">
+          <h3 class="h4">Our Promise</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
+            ipsam voluptas omnis iusto deleniti recusandae.
+          </p>
+        </div>
+      </div>
+    </section>
+    <ul class="footer-social">
+      <li><icons-twitter /></li>
+      <li><icons-facebook /></li>
+      <li><icons-pinterest /></li>
+      <li><icons-instagram /></li>
+      <li><icons-tiktok /></li>
     </ul>
-    <ul>
-      <li>Twitter</li>
-      <li>Facebook</li>
-      <li>Instagram</li>
-      <li>LinkedIn</li>
-    </ul>
-    <div class="newsletter">
-      <h2 class="newsletter-title">Sign up for our newsletter:</h2>
-      <input
-        class="newsletter-input"
-        type="email"
-        placeholder="Enter your email"
-      />
+    <div class="footer-copyright">
+      &copy;
+      <span ref="year">{{ year }}</span>
+      , All rights reserved
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'AppFooterLinks',
+  data() {
+    return {
+      year: new Date().getFullYear(),
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-.app-footer-links {
-  width: 80%;
-  padding: 40px 0;
-  margin-left: 10%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-row-gap: 30px;
+.footer-links {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
 
-  @include breakpoint($deviceLg) {
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr;
-    grid-row-gap: 0;
-  }
-
-  ul {
-    list-style: none;
-    padding-left: 0;
+    .column {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
   }
 }
-
-.newsletter {
-  width: 100%;
-  grid-column: 1 / span 2;
-
-  @include breakpoint($deviceLg) {
-    grid-column: 3;
-  }
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
 }
-
-.newsletter-title {
-  margin-bottom: 1rem;
-}
-
-.newsletter-input {
-  width: 100%;
-  padding: 10px;
+.footer-copyright {
+  text-align: center;
+  padding: 10px 0;
 }
 </style>

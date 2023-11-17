@@ -1,8 +1,23 @@
+<script>
+export default {
+  name: 'IconsArrow',
+  props: {
+    width: {
+      type: String,
+      default: '16',
+    },
+    height: {
+      type: String,
+      default: '9',
+    },
+  },
+}
+</script>
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="9"
+    :width="width"
+    :height="height"
     viewBox="0 0 16 9"
   >
     <path
