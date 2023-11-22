@@ -23,7 +23,7 @@
           </ul>
         </div>
         <div class="column">
-          <h3 class="h4">Image</h3>
+          <img src="/images/footer.png" alt="logo" />
         </div>
         <div class="column">
           <h3 class="h4">Our Promise</h3>
@@ -69,8 +69,14 @@ export default {
     flex-wrap: wrap;
 
     .column {
-      flex: 0 0 25%;
-      max-width: 25%;
+      @include breakpoint(992px) {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+
+      .h4 {
+        margin-bottom: 16px;
+      }
     }
   }
 }

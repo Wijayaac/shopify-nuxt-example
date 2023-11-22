@@ -5,6 +5,7 @@ export default {
   computed: {
     ...mapGetters({
       cartSize: 'cart/size',
+      headerMenu: 'header-menu/items',
     }),
   },
   // add function to show header when scrolling up
@@ -42,17 +43,8 @@ export default {
     </div>
     <nav class="main-nav">
       <ul>
-        <li class="main-nav-item">
-          <nuxt-link exact to="/">All</nuxt-link>
-        </li>
-        <li class="main-nav-item">
-          <nuxt-link to="/?type=cheese">Cheeses</nuxt-link>
-        </li>
-        <li class="main-nav-item">
-          <nuxt-link to="/?type=meat">Meats</nuxt-link>
-        </li>
-        <li class="main-nav-item">
-          <nuxt-link to="/?type=boards">Boards</nuxt-link>
+        <li v-for="menu in headerMenu" :key="menu.id" class="main-nav-item">
+          <nuxt-link exact to="/">{{ menu.title }}</nuxt-link>
         </li>
       </ul>
     </nav>

@@ -7,8 +7,12 @@ import HomeTextIcon from '~/components/HomeTextIcon.vue'
 export default {
   async asyncData({ $http, $route }) {
     const productListResponse = await $http.$post('/api/get-product-list')
+    const headerMenuResponse = await $http.$post('/api/get-header-menu', {
+      menuHandle: 'main-menu',
+    })
     return {
       productList: productListResponse.products.edges,
+      headerMenu: headerMenuResponse.menu.items,
     }
   },
   head: () => ({
@@ -30,6 +34,10 @@ export default {
     const localCart = window.localStorage.getItem('shopifyNuxtCart')
     if (localCart) {
       this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    }
+    // save menu
+    if (this.headerMenu.length > 0) {
+      this.$store.dispatch('header-menu/updateBase', this.headerMenu)
     }
   },
   components: { HomeProductCategory, HomeTextIcon, HomeQuote, HomeBanner },
